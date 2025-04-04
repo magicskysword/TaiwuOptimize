@@ -65,7 +65,7 @@ namespace TaiwuOptimize.Behaviour
         {
             if(ModMain.AvatarFadeInTime > 0f)
             {
-                group.DOFade(1f, ModMain.AvatarFadeInTime);
+                group.DOFade(1f, ModMain.AvatarFadeInTime).SetEase(Ease.InCubic);
             }
             else
             {

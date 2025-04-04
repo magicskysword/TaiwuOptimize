@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="..\packages\AssemblyPublicizer.1.0.2\build\AssemblyPublicizer.props" Condition="Exists('..\packages\AssemblyPublicizer.1.0.2\build\AssemblyPublicizer.props')" />
     <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -7,7 +8,7 @@
         <ProjectGuid>{83495132-C071-4811-9BD4-EDA3BCD6CA08}</ProjectGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>InfinityScrollFix</RootNamespace>
+        <RootNamespace>TaiwuOptimize</RootNamespace>
         <AssemblyName>TaiwuOptimize</AssemblyName>
         <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
@@ -21,6 +22,7 @@
         <DefineConstants>DEBUG;TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,61 +32,73 @@
         <DefineConstants>TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="0Harmony">
-          <HintPath>..\..\..\soft\steam\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\0Harmony.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
         <Reference Include="Assembly-CSharp">
-          <HintPath>..\..\..\soft\steam\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\Assembly-CSharp.dll</HintPath>
-          <Private>False</Private>
+            <HintPath>$(SolutionDir)lib\Assembly-CSharp_public.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Assembly-CSharp-firstpass">
+            <HintPath>$(SolutionDir)lib\Assembly-CSharp-firstpass_public.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="0Harmony">
+            <HintPath>$(TaiWuPath)\The Scroll of Taiwu_Data\Managed\0Harmony.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="AssemblyPublicizer, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\AssemblyPublicizer.1.0.2\lib\net472\AssemblyPublicizer.dll</HintPath>
         </Reference>
         <Reference Include="DemiLib">
-          <HintPath>..\..\..\soft\steam\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\DemiLib.dll</HintPath>
+          <HintPath>$(TaiWuPath)\The Scroll of Taiwu_Data\Managed\DemiLib.dll</HintPath>
           <Private>False</Private>
         </Reference>
         <Reference Include="DOTween">
-          <HintPath>..\..\..\soft\steam\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\DOTween.dll</HintPath>
+          <HintPath>$(TaiWuPath)\The Scroll of Taiwu_Data\Managed\DOTween.dll</HintPath>
           <Private>False</Private>
         </Reference>
         <Reference Include="DOTweenPro">
-          <HintPath>..\..\..\soft\steam\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\DOTweenPro.dll</HintPath>
+          <HintPath>$(TaiWuPath)\The Scroll of Taiwu_Data\Managed\DOTweenPro.dll</HintPath>
           <Private>False</Private>
         </Reference>
         <Reference Include="spine-unity">
-          <HintPath>..\..\..\soft\steam\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\spine-unity.dll</HintPath>
+          <HintPath>$(TaiWuPath)\The Scroll of Taiwu_Data\Managed\spine-unity.dll</HintPath>
           <Private>False</Private>
+        </Reference>
+        <Reference Include="spine-csharp">
+            <HintPath>$(TaiWuPath)\The Scroll of Taiwu_Data\Managed\spine-csharp.dll</HintPath>
+            <Private>False</Private>
         </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
         <Reference Include="System.Xml" />
         <Reference Include="TaiwuModdingLib">
-          <HintPath>..\..\..\soft\steam\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\TaiwuModdingLib.dll</HintPath>
+          <HintPath>$(TaiWuPath)\The Scroll of Taiwu_Data\Managed\TaiwuModdingLib.dll</HintPath>
           <Private>False</Private>
         </Reference>
         <Reference Include="Unity.TextMeshPro">
-          <HintPath>..\..\..\soft\steam\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+          <HintPath>$(TaiWuPath)\The Scroll of Taiwu_Data\Managed\Unity.TextMeshPro.dll</HintPath>
           <Private>False</Private>
         </Reference>
         <Reference Include="UnityEngine">
-          <HintPath>..\..\..\soft\steam\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\UnityEngine.dll</HintPath>
+          <HintPath>$(TaiWuPath)\The Scroll of Taiwu_Data\Managed\UnityEngine.dll</HintPath>
           <Private>False</Private>
         </Reference>
         <Reference Include="UnityEngine.AudioModule">
-          <HintPath>..\..\..\soft\steam\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+          <HintPath>$(TaiWuPath)\The Scroll of Taiwu_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.CoreModule">
-          <HintPath>..\..\..\soft\steam\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+          <HintPath>$(TaiWuPath)\The Scroll of Taiwu_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
           <Private>False</Private>
         </Reference>
         <Reference Include="UnityEngine.UI">
-          <HintPath>..\..\..\soft\steam\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\UnityEngine.UI.dll</HintPath>
+          <HintPath>$(TaiWuPath)\The Scroll of Taiwu_Data\Managed\UnityEngine.UI.dll</HintPath>
           <Private>False</Private>
         </Reference>
         <Reference Include="UnityEngine.UIModule">
-          <HintPath>..\..\..\soft\steam\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+          <HintPath>$(TaiWuPath)\The Scroll of Taiwu_Data\Managed\UnityEngine.UIModule.dll</HintPath>
           <Private>False</Private>
         </Reference>
     </ItemGroup>
@@ -98,7 +112,6 @@
         <Compile Include="Patch\UICombatPatch.cs" />
         <Compile Include="Patch\UICombatResultPatch.cs" />
         <Compile Include="Patch\UIEventWindowPatch.cs" />
-        <Compile Include="Patch\UISettlementInformationPatch.cs" />
         <Compile Include="Patch\UIWorldMapPatch.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Utils.cs" />
@@ -107,6 +120,12 @@
       <Content Include="Config.lua">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
+      <Content Include="Cover.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="packages.config" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -116,5 +135,33 @@
     <Target Name="AfterBuild">
     </Target>
     -->
+
+    <Target Name="Publicize" AfterTargets="Clean">
+        <ItemGroup>
+            <Assemblies Include="$(TaiWuPath)\The Scroll of Taiwu_Data\Managed\Assembly-CSharp.dll" />
+            <Assemblies Include="$(TaiWuPath)\The Scroll of Taiwu_Data\Managed\Assembly-CSharp-firstpass.dll" />
+        </ItemGroup>
+
+        <PublicizeTask InputAssemblies="@(Assemblies)" OutputDir="$(SolutionDir)lib/" />
+    </Target>
+
+    <Target Name="DeployMod" AfterTargets="Build">
+        <ItemGroup>
+            <Assembly Include="$(OutputPath)TaiwuOptimize.dll" />
+            <Assembly Include="$(OutputPath)TaiwuOptimize.pdb" />
+            <ModConfig Include="$(OutputPath)Config.lua" />
+            <ModConfig Include="$(OutputPath)Cover.png" />
+        </ItemGroup>
+
+        <Copy SourceFiles="@(Assembly)" DestinationFolder="$(TaiWuPath)\Mod\TaiwuOptimize\Plugins" />
+        <Copy SourceFiles="@(ModConfig)" DestinationFolder="$(TaiWuPath)\Mod\TaiwuOptimize" />
+    </Target>
+
+    <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+      <PropertyGroup>
+        <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
+      </PropertyGroup>
+      <Error Condition="!Exists('..\packages\AssemblyPublicizer.1.0.2\build\AssemblyPublicizer.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AssemblyPublicizer.1.0.2\build\AssemblyPublicizer.props'))" />
+    </Target>
 
 </Project>

@@ -62,7 +62,7 @@ namespace TaiwuOptimize.Patch
             {
                 var canvasGroup = target.gameObject.GetOrAddComponent<CanvasGroup>();
                 canvasGroup.alpha = 0;
-                canvasGroup.DOFade(1, duration, snapping);
+                canvasGroup.DOFade(1, duration, snapping).SetEase(Ease.InCubic);
                 target.localPosition = Vector3.zero;
             }
             return target.DOLocalMove(endValue, duration, snapping);
@@ -74,7 +74,7 @@ namespace TaiwuOptimize.Patch
             if(ModMain.EnableEventWindowFade)
             {
                 var canvasGroup = target.gameObject.GetOrAddComponent<CanvasGroup>();
-                canvasGroup.DOFade(0, duration, snapping);
+                canvasGroup.DOFade(0, duration, snapping).SetEase(Ease.InCubic);
                 return target.DOLocalMove(Vector3.zero, duration, snapping);
             }
 

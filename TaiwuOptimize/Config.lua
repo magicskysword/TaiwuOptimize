@@ -6,29 +6,42 @@
 所有优化项都可以选择性打开或关闭。\
 \
 优化项：\
-* 【已删除】【官方已优化】游戏滚动列表逻辑\
 * 人物头像加载逻辑，从瞬间加载改为了分时加载。若对头像淡入效果不适可以在设置中改为立即显示。\
-* 势力界面优化，加快了显示速度。\
-* 对话界面弹出加快，修改弹出样式（向下弹出->淡入）\
-* 战斗开始前的等待时间提前到先手提示出现\
-* 加快战斗结算的动画时间（需手动开启和调节倍速）\
-* 优化奇遇的行走方式（不再是走一格停一格）\
-* 加快奇遇的移动速度（需手动开启和调节倍速）\
-* 加快奇遇的格子展开速度（需手动开启和调节倍速）\
+* 对话界面弹出加快，修改弹出样式：向下弹出->淡入\
+* 为战斗界面加回了攻击范围显示\
+* 【需手动开启】加快战斗结算的动画时间\
+* 优化奇遇的行走方式，不再是走一格停一格\
+* 【需手动开启】加快奇遇的移动速度\
+* 【需手动开启】加快奇遇的格子展开速度\
 * 优化大地图移动方式\
-* 加快大地图移动速度（需手动开启和调节倍速）\
+* 【需手动开启】加快大地图移动速度\
 \
-建议搭配硬件鼠标Mod使用：https://steamcommunity.com/sharedfiles/filedetails/?id=2871614099\
+已删除：\
+* 【官方已优化】游戏滚动列表逻辑\
+* 【官方已优化】势力界面加载\
+* 【官方已优化】加快了过月速度：对过月组织成员排序进行优化（感谢@Neutron3529）\
+* 【存在Bug待更新】战斗开始前的等待时间提前到先手提示出现\
+* 【存在Bug待更新】加快了过月速度：关闭过月时的秘闻系统更新（感谢@Neutron3529）\
+\
+官方已优化硬件鼠标Mod，目前不再需要硬件鼠标Mod。\
 \
 讨论Mod、反馈Bug或催更欢迎加入QQ群：689609241\
 ",
-    Source = 1,
     Cover = "Cover.png",
     FileId = 2874712856,
-    Source = 1,
+    GameVersion = "1.0.0.0",
+    Source = 0,
     FrontendPlugins =
     {
         [1] = "TaiwuOptimize.dll"
+    },
+    TagList = {
+        [1] = "Optimizations",
+        [2] = "Compatible Mods",
+    },
+    BackendPlugins =
+    {
+        [1] = "TaiwuOptimizeBackend.dll"
     },
     DefaultSettings =
     {
@@ -42,22 +55,15 @@
         {
             DisplayName = "立绘加载淡入时间",
             Description = "<color=#FF0000>[需开启立绘延迟加载]</color>在立绘加载后，淡入显示的时间。对立绘淡入感觉不适可以设置为[立即显示]",
-            Key = "Int_AvatarFadeInTimeType",
+            Key = "Int_AvatarFadeInTimeTypeR",
             DefaultValue = 0,
             SettingType = "Dropdown",
             Options = {
+                "立即显示",
                 "0.3秒",
                 "0.5秒",
                 "1秒",
-                "立即显示",
             }
-        },
-        {
-            DisplayName = "势力界面优化",
-            Description = "优化势力界面的加载，加快加载速度。",
-            Key = "Bool_EnableSettlementOptimize",
-            DefaultValue = true,
-            SettingType = "Toggle"
         },
         {
             DisplayName = "使用淡入对话框",
@@ -80,9 +86,9 @@
             }
         },
         {
-            DisplayName = "快速进入战斗",
-            Description = "使战斗开始提前，不需要再等tips结束。",
-            Key = "Bool_EnableQuickEnterCombat",
+            DisplayName = "启用攻击范围",
+            Description = "战斗时，在角色下方显示攻击范围",
+            Key = "Bool_EnableCombatRange",
             DefaultValue = true,
             SettingType = "Toggle"
         },
@@ -112,7 +118,7 @@
         },
         {
             DisplayName = "奇遇镜头跟随",
-            Description = "<color=#FF0000>[需开启奇遇移动优化]</color>使奇遇移动过程中镜头跟随人物",
+            Description = "使奇遇移动过程中镜头跟随人物",
             Key = "Bool_EnableAdventureCameraFollow",
             DefaultValue = true,
             SettingType = "Toggle"
@@ -182,5 +188,12 @@
                 "5x",
             }
         },
+--         {
+--             DisplayName = "关闭过月秘闻",
+--             Description = "关闭过月产生的秘闻，加快过月速度。",
+--             Key = "Bool_DisableSecretInformationSystem",
+--             DefaultValue = false,
+--             SettingType = "Toggle"
+--         },
     }
 }
